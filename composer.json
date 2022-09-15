@@ -1,22 +1,36 @@
 {
-    "name": "symfony/skeleton",
+    "name": "vgpastor/prueba-vhs",
     "type": "project",
     "license": "proprietary",
-    "description": "A minimal Symfony project recommended to create bare bones applications",
+    "description": "Technical level test of symfony",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
         "php": ">=8.0.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/doctrine-bundle": "^2.7",
+        "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/orm": "^2.13",
         "symfony/console": "6.0.*",
         "symfony/dotenv": "6.0.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "6.0.*",
+        "symfony/proxy-manager-bridge": "6.0.*",
         "symfony/runtime": "6.0.*",
         "symfony/yaml": "6.0.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "friendsofphp/php-cs-fixer": "^3.11",
+        "phpstan/phpstan": "^1.8",
+        "phpstan/phpstan-symfony": "^1.2",
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "6.0.*",
+        "symfony/css-selector": "6.0.*",
+        "symfony/maker-bundle": "^1.45",
+        "symfony/phpunit-bridge": "^6.1",
+        "symfony/requirements-checker": "^2.0"
     },
     "config": {
         "allow-plugins": {
@@ -51,14 +65,24 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "requirements-checker": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "cs" : "php-cs-fixer fix src --rules=@Symfony",
+        "phpstan": "phpstan analyse src tests --level 7 --no-progress",
+        "tests": "phpunit",
+        "ci": [
+            "@cs",
+            "@phpstan",
+            "@tests"
+        ],
+        "workflow-github": "act -P ubuntu-20.04=shivammathur/node:2004"
     },
     "conflict": {
         "symfony/symfony": "*"
