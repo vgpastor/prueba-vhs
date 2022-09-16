@@ -28,7 +28,7 @@ class FilmRepository extends ServiceEntityRepository implements FilmRepositoryIn
 
     public function findByName(string $name): Film
     {
-        return parent::findBy(['name'=>$name]);
+        return parent::findOneBy(['name'=>$name]);
     }
 
     /**

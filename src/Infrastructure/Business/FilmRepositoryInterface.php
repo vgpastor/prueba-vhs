@@ -10,6 +10,9 @@ interface FilmRepositoryInterface
 
     public function findByName(string $name): Film;
 
+    /**
+     * @return Film[]
+     */
     public function findAll(): array;
 
     public function save(Film $film, bool $flush = false): void;

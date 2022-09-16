@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Business\Films\FilmAdd;
 use App\Tests\Functional\APIControllerTest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,7 +20,7 @@ class FilmsController extends AbstractController
     }
 
     #[Route('/', name: 'add', methods: ['POST'])]
-    public function add(): JsonResponse
+    public function add(FilmAdd $filmAdd): JsonResponse
     {
         return $this->json(APIControllerTest::$filmDemo, 201);
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Api;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -15,7 +16,7 @@ use Symfony\Component\Serializer\Serializer;
 class JsonResponse extends \Symfony\Component\HttpFoundation\JsonResponse
 {
     /**
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function __construct($data, int $status = 200, array $headers = [], bool $json = false)
     {

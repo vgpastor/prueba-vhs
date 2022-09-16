@@ -68,7 +68,9 @@ Ofrecer un Swagger/OpenAPI
 - Add swagger to the API.
 - Add JWT token validator to the add data function.
 - Extends the data of the TheMovieDB API to different fields.
+- API TMDB create service to inject ApiKey in the env files
 - API TMDB create interface and model for the responses and data sent
+- Create logic in Business Film to proccess the data received in controller.
 
 ### Notes
 - To reduce the time I use only one branch without PR
