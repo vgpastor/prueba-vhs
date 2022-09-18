@@ -21,14 +21,14 @@ class FilmRepository extends ServiceEntityRepository implements FilmRepositoryIn
         parent::__construct($registry, Film::class);
     }
 
-    public function findById(int $id): Film
+    public function findById(int $id): ?Film
     {
         return parent::find($id);
     }
 
-    public function findByName(string $name): Film
+    public function findByName(string $name): ?Film
     {
-        return parent::findOneBy(['name'=>$name]);
+        return parent::findOneBy(['name' => $name]);
     }
 
     /**

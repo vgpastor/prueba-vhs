@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\TMDB;
 
+use function PHPUnit\Framework\throwException;
+
 class ApiTMDB
 {
     private string $apiKey;
@@ -49,13 +51,26 @@ class ApiTMDB
                     break;
             }
         }
-        curl_setopt($ch, CURLOPT_URL, $this->server.'/'.$path.'?'.$httpParams);
+        curl_setopt($ch, CURLOPT_URL, $this->server.$path.'?'.$httpParams);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYSTATUS, false);
+//        curl_setopt($ch, CURLOPT_VERBOSE, true);
+//        var_dump(curl_getinfo($ch));
         try {
             $response = curl_exec($ch);
-            var_dump($response);
+            try {
+                $response = json_decode($response, true, 512, JSON_THROW_ON_ERROR);
+            } catch (\Exception $e) {
+                throwException('Error al conectar a TMDB');
+            }
 
-            return json_decode($response);
+//            var_dump($response);
+//            var_dump(curl_error($ch));
+//            var_dump(curl_errno($ch));
+
+            return $response;
         } catch (\Exception $e) {
             return false;
         }

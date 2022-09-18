@@ -76,3 +76,9 @@ Ofrecer un Swagger/OpenAPI
 - To reduce the time I use only one branch without PR
 - I implement only github actions because it's the git server that I'm using.
 - 
+
+## How to run
+- Create database `symfony console doctrine:database:create`
+- Update schema `symfony console doctrine:migrations:migrate`
+- Run API dev server `symfony server:start`
+- To pass tests it's neccesary create test database and migration for env test

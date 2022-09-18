@@ -6,9 +6,9 @@ use App\Entity\Film;
 
 interface FilmRepositoryInterface
 {
-    public function findById(int $id): Film;
+    public function findById(int $id): ?Film;
 
-    public function findByName(string $name): Film;
+    public function findByName(string $name): ?Film;
 
     /**
      * @return Film[]

@@ -18,7 +18,7 @@ class JsonResponse extends \Symfony\Component\HttpFoundation\JsonResponse
     /**
      * @throws ExceptionInterface
      */
-    public function __construct($data, int $status = 200, array $headers = [], bool $json = false)
+    public function __construct(object|array $data, int $status = 200, array $headers = [], bool $json = false)
     {
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
         $normalizer = new ObjectNormalizer($classMetadataFactory);
