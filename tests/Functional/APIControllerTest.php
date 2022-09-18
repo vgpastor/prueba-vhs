@@ -59,6 +59,6 @@ class APIControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $data = json_decode($client->getResponse()->getContent(), true, 512, JSON_THROW_ON_ERROR);
         $this->assertGreaterThanOrEqual(1, count($data));
-        $this->assertEquals(self::$filmDemo['full_details']['id'], $data['movieDb']['id']);
+        $this->assertEquals(self::$filmDemo, $data);
     }
 }
